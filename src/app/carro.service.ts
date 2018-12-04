@@ -15,4 +15,9 @@ export class CarroService {
     this.messageService.add('CarroService: Obteniendo carros');
     return of(CARROS);
   }
+
+  getCarro(id: number): Observable<Carro> {
+    this.messageService.add(`CarroService: Obteniendo el caro con el id=${id}`);
+    return of(CARROS.find(carro => carro.id === id));
+  }
 }

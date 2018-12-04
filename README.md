@@ -36,3 +36,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - ng generate service carro
 - ng generate component messages
 - ng generate service message
+- ng generate component dashboard
