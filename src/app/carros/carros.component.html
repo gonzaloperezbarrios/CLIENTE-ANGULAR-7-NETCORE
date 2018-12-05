@@ -3,8 +3,20 @@
 <h2>Lista carros</h2>
 <ul class="carros">
   <li *ngFor="let carro of carros">
-      <a routerLink="/detail/{{carro.id}}">
-        <span class="badge">{{carro.id}}</span> {{carro.name}}
-      </a>
-  </li>  
+    <a routerLink="/detail/{{carro.id}}">
+      <span class="badge">{{carro.id}}</span> {{carro.name}}
+    </a>
+    <button class="delete" title="Borrar carro"
+      (click)="delete(carro)">x</button>
+  </li>
 </ul>
+
+<div>
+  <label>Marca del carro:
+    <input #carName />
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(carName.value); carName.value=''">
+    Nuevo
+  </button>
+</div>

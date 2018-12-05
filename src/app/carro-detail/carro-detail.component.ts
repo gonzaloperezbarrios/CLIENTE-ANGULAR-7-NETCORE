@@ -32,4 +32,8 @@ export class CarroDetailComponent implements OnInit {
 
   @Input() carro: Carro;
 
+  save(): void {
+    this.carroService.updateCarro(this.carro).subscribe(() => this.goBack());
+  }
+
 }

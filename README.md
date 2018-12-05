@@ -37,3 +37,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - ng generate component messages
 - ng generate service message
 - ng generate component dashboard
+- npm install angular-in-memory-web-api --save (opcional)
+- npm install @angular/http
+- ng generate service InMemoryData

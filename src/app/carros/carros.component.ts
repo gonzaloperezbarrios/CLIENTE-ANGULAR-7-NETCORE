@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Carro } from '../carro';
-import { CARROS } from '../mock-carros';
 import { CarroService } from '../carro.service';
 
 @Component({
@@ -23,4 +22,19 @@ export class CarrosComponent implements OnInit {
   getCarros(): void {
     this.carroService.getCarros().subscribe(carros => this.carros = carros);
   }
+
+  add(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    this.carroService.addCarro({ name } as Carro)
+                     .subscribe(carro => {
+                        this.carros.push(carro);
+                     });
+  }
+
+  delete(carro: Carro): void {
+    this.carros = this.carros.filter(h => h !== carro);
+    this.carroService.deleteCarro(carro).subscribe();
+  }
+
 }
