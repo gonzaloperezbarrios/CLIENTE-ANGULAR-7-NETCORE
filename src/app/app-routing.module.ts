@@ -1,3 +1,5 @@
+// https://angular.io/tutorial/toh-pt5
+// Mapea las rutas con los componentes (bloques de lógica).
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CarrosComponent }      from './carros/carros.component';
