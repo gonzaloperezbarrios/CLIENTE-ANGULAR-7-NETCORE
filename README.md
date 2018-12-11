@@ -1,33 +1,16 @@
-# MyApp
+# Example Hero
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.1.
+> Este proyecto esta sobre [Angular CLI](https://github.com/angular/angular-cli) versión 7.1.1.
 
-## Development server
+##Paso I
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+> Se realiza el tutorial de [Angular Hero](https://angular.io/tutorial) con la unica diferencia que se renombra **Hero** por **Carro**, con el fin dejar el camino listo para consumir una [API REST](https://github.com/gonzaloperezbarrios/DDD-NET-CORE) al lado del servidor.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+##Paso II
+> En este paso se conecta una [API REST](https://github.com/gonzaloperezbarrios/DDD-NET-CORE). Se actuliza el proyecto para implementar lógica CRUD;
 
 ##Comandos útiles 
-> [Documentación de apoyo](https://angular.io/tutorial/toh-pt0)
+> [Tutorial oficial](https://angular.io/tutorial/toh-pt0)
 - ng new app-carros
 - cd app-carros
 - ng serve --open
