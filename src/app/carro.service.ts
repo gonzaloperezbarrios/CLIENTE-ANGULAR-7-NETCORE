@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json' })
 };
 
 @Injectable({
@@ -19,7 +19,7 @@ export class CarroService {
     private http: HttpClient,
     private messageService: MessageService) { }
 
-  private carroUrl = 'api/carros';  // URL to web api
+  private carroUrl = 'http://localhost:5000/api/cars';  // URL to web api
 
   /**
    * Handle Http operation that failed.
@@ -47,8 +47,19 @@ export class CarroService {
   }
 
   getCarros(): Observable<Carro[]> {
-    return this.http.get<Carro[]>(this.carroUrl)
-    .pipe(
+    return this.http.get<Carro>(this.carroUrl) 
+    .pipe( 
+      map(carrosJson=>{        
+        let carros=[]; 
+        for (let i in carrosJson){
+          const car={
+            'id':carrosJson[i]['Id'],
+            'name':carrosJson[i]['Name']
+          }         
+          carros.push(car);
+        }      
+        return carros;
+      }),      
       tap(_ => this.log('Obteniendo carros')),
       catchError(this.handleError('getCarros', []))
     );
@@ -57,14 +68,25 @@ export class CarroService {
   getCarro(id: number): Observable<Carro> {
     const url = `${this.carroUrl}/${id}`;
     return this.http.get<Carro>(url).pipe(
+      map(carrosJson=>{   
+        const car={
+          'id':carrosJson['Id'],
+          'name':carrosJson['Name']
+        }         
+        return car;
+      }),  
       tap(_ => this.log(`Obteniendo carro por el id=${id}`)),
       catchError(this.handleError<Carro>(`getCarro id=${id}`))
     );
   }
 
   /** PUT: update the carro on the server */
-  updateCarro (carro: Carro): Observable<any> {   
-    return this.http.put(this.carroUrl, carro, httpOptions).pipe(
+  updateCarro (carro: Carro): Observable<any> {  
+    const car={
+      'Name':carro.name  
+    }   
+    const url = `${this.carroUrl}/${carro.id}`;
+    return this.http.put(url, car, httpOptions).pipe(
       tap(_ => this.log(`Actulizado carro por el id=${carro.id}`)),
       catchError(this.handleError<any>('updateCarro'))
     );
