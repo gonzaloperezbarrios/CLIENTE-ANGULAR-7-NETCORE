@@ -6,11 +6,15 @@
 
 > Se realiza el tutorial de [Angular Hero](https://angular.io/tutorial) con la unica diferencia que se renombra **Hero** por **Carro**, con el fin dejar el camino listo para consumir una [API REST](https://github.com/gonzaloperezbarrios/DDD-NET-CORE) al lado del servidor.
 
+> [Repositorio/Rama -> HeroExample](https://github.com/gonzaloperezbarrios/CLIENTE-ANGULAR-7-NETCORE/tree/HeroExample)
+
 ## Paso II
 > En este paso se conecta una [API REST](https://github.com/gonzaloperezbarrios/DDD-NET-CORE). Se actuliza el proyecto para implementar lógica CRUD.
 
 ## Paso III
 > En este paso se conecta una [API GraphQL](https://github.com/gonzaloperezbarrios/DDD-NET-CORE), mediante el uso del cliente [Apollo - Angular](https://www.apollographql.com/docs/angular/). Se actuliza el proyecto para implementar lógica CRUD.
+
+> [Repositorio/Rama -> ApolloGraphQL](https://github.com/gonzaloperezbarrios/CLIENTE-ANGULAR-7-NETCORE/tree/ApolloGraphQL)
 
 > Video de Guía
 [![Guía](https://img.youtube.com/vi/dp_64aX_6jI/0.jpg)](https://www.youtube.com/watch?v=dp_64aX_6jI "Guía")
