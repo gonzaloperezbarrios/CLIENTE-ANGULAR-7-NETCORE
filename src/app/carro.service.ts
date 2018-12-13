@@ -9,6 +9,7 @@ import { Apollo } from 'apollo-angular';
 import { AllCarGQL } from './command/carro.all.graphql';
 import { GetCarGQL } from './command/carro.get.graphql';
 import { UpdateCarGQL } from './command/carro.update.graphql';
+import { DeleteCarGQL } from './command/carro.delete.graphql';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,8 @@ export class CarroService {
     private messageService: MessageService,
     private allCarGQL: AllCarGQL,
     private getCarGQL: GetCarGQL,
-    private updateCarGQL: UpdateCarGQL
+    private updateCarGQL: UpdateCarGQL,
+    private deleteCarGQL: DeleteCarGQL,
   ) { }
    /**
    * Handle Http operation that failed.
@@ -97,6 +99,13 @@ export class CarroService {
 
   /** DELETE: delete the carro from the server */
   deleteCarro (carro: Carro | number): Observable<Carro> {
-    throw "deleteCarro";
+    const id = typeof carro === 'number' ? carro : carro.id;
+    return this.deleteCarGQL.mutate({
+      carId:id
+    })
+    .pipe(
+      tap(_ => this.log(`Carro borrado por el id=${id}`)),
+      catchError(this.handleError<Carro>(`deleteCarro id=${id}`))
+    ); 
   }
 }
