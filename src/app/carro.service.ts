@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Carro, Query } from './carro';
+import { Carro } from './carro';
 //GraphQL
 import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
 import { AllCarGQL } from './command/carro.all.graphql';
 import { GetCarGQL } from './command/carro.get.graphql';
+import { UpdateCarGQL } from './command/carro.update.graphql';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,8 @@ export class CarroService {
     private apollo: Apollo,
     private messageService: MessageService,
     private allCarGQL: AllCarGQL,
-    private getCarGQL: GetCarGQL
+    private getCarGQL: GetCarGQL,
+    private updateCarGQL: UpdateCarGQL
   ) { }
    /**
    * Handle Http operation that failed.
@@ -72,7 +74,20 @@ export class CarroService {
 
   /** PUT: update the carro on the server */
   updateCarro (carro: Carro): Observable<any> {  
-    throw "updateCarro"; 
+    return this.updateCarGQL.mutate({
+      update:{
+        id:carro.id,
+        name:carro.name,
+        //Se completa con vacio porque en el modeloType de GraphQL del servidor 
+        //son obligatorios estos campos.
+        engine: "",
+        model: ""  
+      }
+    })
+    .pipe(
+      tap(_ => this.log(`Actulizado carro por el id=${carro.id}`)),
+      catchError(this.handleError<any>('updateCarro'))
+    );
   }
 
   /** POST: add a new carro to the server */
