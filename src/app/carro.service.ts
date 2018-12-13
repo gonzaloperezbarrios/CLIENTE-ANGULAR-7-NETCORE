@@ -4,12 +4,12 @@ import { MessageService } from './message.service';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Carro } from './carro';
 //GraphQL
-import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
 import { AllCarGQL } from './command/carro.all.graphql';
 import { GetCarGQL } from './command/carro.get.graphql';
 import { UpdateCarGQL } from './command/carro.update.graphql';
 import { DeleteCarGQL } from './command/carro.delete.graphql';
+import { AddCarGQL } from './command/carro.add.graphql';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +23,7 @@ export class CarroService {
     private getCarGQL: GetCarGQL,
     private updateCarGQL: UpdateCarGQL,
     private deleteCarGQL: DeleteCarGQL,
+    private addCarGQL: AddCarGQL,
   ) { }
    /**
    * Handle Http operation that failed.
@@ -94,7 +95,21 @@ export class CarroService {
 
   /** POST: add a new carro to the server */
   addCarro (carro: Carro): Observable<Carro> {   
-    throw "addCarro";
+    return this.addCarGQL.mutate({
+      car:{
+        id:carro.id,
+        name:carro.name,
+        //Se completa con vacio porque en el modeloType de GraphQL del servidor 
+        //son obligatorios estos campos.
+        engine: "",
+        model: "" 
+      }
+    })
+    .pipe(
+      map(result => result.data.createCar), 
+      tap((carro: Carro) => this.log(`Carro nuevo con id=${carro.id}`)),
+      catchError(this.handleError<Carro>(`addCarro`))
+    ); 
   }
 
   /** DELETE: delete the carro from the server */
