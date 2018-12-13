@@ -21,6 +21,14 @@
 
     npm install apollo-angular apollo-angular-link-http apollo-client apollo-cache-inmemory graphql-tag graphql
 
+> Documentación de apoyo:
+
+- [Querys](https://www.apollographql.com/docs/angular/basics/queries.html)
+- [Mutations](https://www.apollographql.com/docs/angular/basics/mutations.html)
+- [Query, Mutation, Subscription services](https://www.apollographql.com/docs/angular/basics/services.html)
+
+
+
 
 
 ## Comandos útiles 

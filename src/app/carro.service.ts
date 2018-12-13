@@ -63,7 +63,22 @@ export class CarroService {
   }
 
   getCarro(id: number): Observable<Carro> {
-      throw "getCarro";   
+    return this.apollo.watchQuery<Query>({
+      query: gql`
+        query carro {
+          carro(id: ${id}) {
+            id
+            name 
+          }
+        }
+        `
+    })
+    .valueChanges 
+    .pipe(
+      map(result => result.data.carro),   
+      tap(_ => this.log(`Obteniendo carro por el id=${id}`)),
+      catchError(this.handleError<Carro>(`getCarro id=${id}`))
+    );  
   }
 
   /** PUT: update the carro on the server */
