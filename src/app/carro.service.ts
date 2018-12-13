@@ -6,6 +6,8 @@ import { Carro, Query } from './carro';
 //GraphQL
 import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
+import { AllCarGQL } from './command/carro.all.graphql';
+import { GetCarGQL } from './command/carro.get.graphql';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,10 @@ import { Apollo } from 'apollo-angular';
 export class CarroService {
   constructor(
     private apollo: Apollo,
-    private messageService: MessageService) { }
+    private messageService: MessageService,
+    private allCarGQL: AllCarGQL,
+    private getCarGQL: GetCarGQL
+  ) { }
    /**
    * Handle Http operation that failed.
    * Let the app continue.
@@ -41,16 +46,7 @@ export class CarroService {
   }
 
   getCarros(): Observable<Carro[]> {
-    return this.apollo.watchQuery<Query>({
-      query: gql`
-        query carros {
-          carros {
-            id
-            name            
-          }
-        }
-      `
-    })
+    return this.allCarGQL.watch()
     .valueChanges 
     .pipe( 
       map(result => {
@@ -63,15 +59,8 @@ export class CarroService {
   }
 
   getCarro(id: number): Observable<Carro> {
-    return this.apollo.watchQuery<Query>({
-      query: gql`
-        query carro {
-          carro(id: ${id}) {
-            id
-            name 
-          }
-        }
-        `
+    return this.getCarGQL.watch({
+      id:id
     })
     .valueChanges 
     .pipe(
