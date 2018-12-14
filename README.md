@@ -9,31 +9,40 @@
 > [Repositorio/Rama -> HeroExample](https://github.com/gonzaloperezbarrios/CLIENTE-ANGULAR-7-NETCORE/tree/HeroExample)
 
 ## Paso II
-> En este paso se conecta una [API REST](https://github.com/gonzaloperezbarrios/DDD-NET-CORE). Se actuliza el proyecto para implementar lógica CRUD.
+> En este paso se conecta una [API REST](https://github.com/gonzaloperezbarrios/DDD-NET-CORE). Se actuliza el proyecto para implementar lógica CRUD. 
+
+**Servidor: *Correr el API REST***, en la raíz del proyecto ejecute en una consola:
+
+    dotnet run -p .\1-Presentation\api
+
+
+>**Cliente Angular** [Repositorio/Rama -> ApiRest](https://github.com/gonzaloperezbarrios/CLIENTE-ANGULAR-7-NETCORE/tree/ApiRest)
+
+
 
 ## Paso III
 > En este paso se conecta una [API GraphQL](https://github.com/gonzaloperezbarrios/DDD-NET-CORE), mediante el uso del cliente [Apollo - Angular](https://www.apollographql.com/docs/angular/). Se actuliza el proyecto para implementar lógica CRUD.
 
-> [Repositorio/Rama -> ApolloGraphQL](https://github.com/gonzaloperezbarrios/CLIENTE-ANGULAR-7-NETCORE/tree/ApolloGraphQL)
+**Servidor: *Correr el API GraphQL***, en la raíz del proyecto ejecute en una consola:
 
-> Video de Guía
-[![Guía](https://img.youtube.com/vi/dp_64aX_6jI/0.jpg)](https://www.youtube.com/watch?v=dp_64aX_6jI "Guía")
+    dotnet run -p .\1-Presentation\api_graph_ql\server\
 
-> [Repositorio Guía](https://github.com/seeschweiler/apollo-client-angular) por **seeschweiler**
+>**Cliente Angular**  [Repositorio/Rama -> ApolloGraphQL](https://github.com/gonzaloperezbarrios/CLIENTE-ANGULAR-7-NETCORE/tree/ApolloGraphQL)
 
-> Instalar Apollo: 
-
-    npm install apollo-angular apollo-angular-link-http apollo-client apollo-cache-inmemory graphql-tag graphql
-
-> Documentación de apoyo:
+# Documentación de apoyo
 
 - [Querys](https://www.apollographql.com/docs/angular/basics/queries.html)
 - [Mutations](https://www.apollographql.com/docs/angular/basics/mutations.html)
 - [Query, Mutation, Subscription services](https://www.apollographql.com/docs/angular/basics/services.html)
 
+## Video Guía
+[![Guía](https://img.youtube.com/vi/dp_64aX_6jI/0.jpg)](https://www.youtube.com/watch?v=dp_64aX_6jI "Guía")
 
+> [Repositorio Guía](https://github.com/seeschweiler/apollo-client-angular) por **seeschweiler**
 
+## Instalar Apollo 
 
+    npm install apollo-angular apollo-angular-link-http apollo-client apollo-cache-inmemory graphql-tag graphql
 
 ## Comandos útiles 
 > [Tutorial oficial](https://angular.io/tutorial/toh-pt0)
